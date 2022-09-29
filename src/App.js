@@ -1,16 +1,23 @@
 import "./App.css";
-import "antd/dist/antd.css";
 import Home from "./pages/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Details } from "./component";
+import { Details, Footers, Navbar } from "./component";
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/:id" element={<Details />} />
-        </Routes>
+        <Navbar />
+        <section className="section-content">
+          <Routes>
+            <Route path="/category/:cat" element={<Home />} />
+          </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:id" element={<Details />} />
+          </Routes>
+        </section>
+        <Footers />
       </BrowserRouter>
     </div>
   );

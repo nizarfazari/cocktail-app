@@ -1,31 +1,36 @@
 import React from "react";
-import { Layout, Card, Input } from "antd";
 import { useNavigate } from "react-router-dom";
-const { Meta } = Card;
-const { Search } = Input;
-const { Content } = Layout;
+import "./contents.css";
+
 const Contents = (props) => {
   const navigate = useNavigate();
-  console.log(props.meals);
   return (
-    <Content className="site-layout" style={{ padding: "0 200px", marginTop: 64 }}>
-      <div className="titles" style={{ padding: 24, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h1>All Food</h1>
-        <Search placeholder="input search text" style={{ width: 200 }} onChange={(e) => props.filterFood(e)} />
+    <div className="container mx-auto pt-5 ">
+      <div className="description-title flex flex-col mb-5 border-2 p-5 text-center text-white">
+        <h1 className="text-2xl ">Welcome to Foodish Restaurant</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error placeat quisquam iure asperiores quod qui eius perferendis quidem tempore. Optio!</p>
       </div>
-      <div className="meals" style={{ display: "flex", flexWrap: "wrap" }}>
-        {props.meals !== undefined &&
+      <div className="flex justify-between items-center ">
+        <h1 className="text-3xl text-white my-5">{props.cat ?? "All Food"}</h1>
+        <div className="input">
+          <input type="text" className="py-2 px-3 rounded-2xl placeholder-gray-500 w-80 flex" placeholder="Search food" onChange={(e) => props.filterFood(e.target.value)} />
+        </div>
+      </div>
+
+      <div className="kontents grid xl:grid-cols-4 md:grid-cols-3 gap-4 grid-cols-2">
+        {props.meals &&
           props.meals.map((meal) => {
             return (
-              <div className="site-layout-background" style={{ padding: 24 }} key={meal.idMeal}>
-                <Card hoverable style={{ width: 300 }} cover={<img alt="example" src={meal.strMealThumb} onClick={() => navigate(`/${meal.idMeal}`)} />}>
-                  <Meta title={meal.strMeal} description={meal.strCategory} />
-                </Card>
+              <div className="cards p-6 rounded-xl text-white cursor-pointer" onClick={() => navigate(`/${meal.idMeal}`)}>
+                <img src={meal.strMealThumb} alt="" className="w-80 " />
+
+                <h1 className="text-xl mt-3 mb-2">{meal.strMeal}</h1>
+                <p className="text-base font-light">{meal.strCategory}</p>
               </div>
             );
           })}
       </div>
-    </Content>
+    </div>
   );
 };
 

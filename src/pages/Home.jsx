@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Layout } from "antd";
-import { Footers, Navbar, Contents } from "../component";
+import { Contents } from "../component";
 import "./styles.css";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
+  const { cat } = useParams();
+
   const [meals, setMeals] = useState([]);
+  const [filter, setFilter] = useState("");
 
   const getData = async () => {
     try {
@@ -25,26 +28,29 @@ const Home = () => {
     }
   };
   const filterFood = async (food) => {
-    console.log(food.target.value);
     try {
-      const datas = await axios.get("https://www.themealdb.com/api/json/v1/1/search.php?f=" + food.target.value);
-      setMeals(datas.data.meals);
+      if (food === "") {
+        const datas = await axios.get("https://www.themealdb.com/api/json/v1/1/search.php?f=" + filter);
+        setMeals(datas.data.meals);
+      } else {
+        setFilter(food);
+        const datas = await axios.get("https://www.themealdb.com/api/json/v1/1/search.php?f=" + food);
+        setMeals(datas.data.meals);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    if (cat) {
+      changeCategory(cat);
+    } else {
+      getData();
+    }
+  }, [cat]);
 
-  return (
-    <Layout>
-      <Navbar changeCategory={changeCategory} getData={getData} />
-      <Contents meals={meals} filterFood={filterFood} />
-      <Footers />
-    </Layout>
-  );
+  return <Contents meals={meals} filterFood={filterFood} cat={cat} />;
 };
 
 export default Home;

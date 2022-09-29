@@ -1,0 +1,10 @@
+.details-background {
+  background-color: #684646;
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 35% 60%;
+}
+
+.images-detail {
+  max-width: 450px;
+}

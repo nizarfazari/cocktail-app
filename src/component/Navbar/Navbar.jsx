@@ -1,22 +1,29 @@
-import { Layout, Menu } from "antd";
 import React from "react";
-
-const { Header } = Layout;
+import { useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
+  const navigate = useNavigate();
   return (
-    <Header style={{ position: "fixed", width: "100%", zIndex: "2" }}>
-      <div className="container" style={{ display: "flex", justifyContent: "space-between", alignContent: "center", height: "64px" }}>
+    <nav className="navbar ">
+      <div className=" flex items-center justify-between container mx-auto h-16 text-white ">
         <div className="logo">
-          <h1>Dishes Food</h1>
+          <h1 className="text-2xl m-0">Foodish</h1>
         </div>
-        <Menu mode="horizontal" theme="dark">
-          <Menu.Item onClick={() => props.getData()}>Home</Menu.Item>
-          <Menu.Item onClick={() => props.changeCategory("Chicken")}>Chiken</Menu.Item>
-          <Menu.Item onClick={() => props.changeCategory("Dessert")}>Desert </Menu.Item>
-        </Menu>
+        <div className="categories">
+          <ul className="flex text-lg gap-x-5 mb-0 ">
+            <li className="cursor-pointer" onClick={() => navigate("/")}>
+              Home
+            </li>
+            <li className="cursor-pointer" onClick={() => navigate("/category/Chicken")}>
+              Chicken
+            </li>
+            <li className="cursor-pointer" onClick={() => navigate("/category/Dessert")}>
+              Desert
+            </li>
+          </ul>
+        </div>
       </div>
-    </Header>
+    </nav>
   );
 };
 
