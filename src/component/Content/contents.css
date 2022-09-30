@@ -5,3 +5,9 @@
 .cards {
   background-color: #684646;
 }
+
+@media screen and (max-width: 600px) {
+  .title-contents {
+    display: block;
+  }
+}

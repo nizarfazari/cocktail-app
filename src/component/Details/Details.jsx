@@ -21,19 +21,21 @@ const Details = () => {
   }, []);
   return (
     <div className="container mx-auto">
-      <div className="details-background p-10">
+      <div className="details-background p-10 2xl:gap-x-0 lg:gap-x-10">
         <div className="images-detail">
           <img alt="example" src={meal.strMealThumb} />
         </div>
         <div className="details-description text-white border-2 p-10">
-          <h1 className="text-xl">{meal.strMeal}</h1>
-          <p>{meal.strCategory}</p>
-          <h2>Ingridients</h2>
-
-          <p>{meal.strIngredient1}</p>
-          <p>{meal.strIngredient2}</p>
-          <p>{meal.strIngredient3}</p>
-          <p>{meal.strIngredient4}</p>
+          <h1 className="text-3xl">{meal.strMeal}</h1>
+          <h1 className="text-xl mt-5 mb-2">Ingridients</h1>
+          {console.log(meal)}
+          <p>- {meal.strIngredient1}</p>
+          <p>- {meal.strIngredient2}</p>
+          <p>- {meal.strIngredient3}</p>
+          <p>- {meal.strIngredient4}</p>
+          <p>- {meal.strIngredient5}</p>
+          <h1 className="text-xl mt-5 mb-2">Instruction</h1>
+          <p className="text-base">{meal.strInstructions}</p>
         </div>
       </div>
       {/* <Layout>

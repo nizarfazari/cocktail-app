@@ -1,11 +1,39 @@
+body {
+  background-color: #472d2d;
+}
+
+.containers {
+  width: 80%;
+}
+
+.category span {
+  cursor: pointer;
+
+  font-weight: 500;
+}
+
+.category span:hover {
+  color: white;
+}
+
 nav {
   background-color: #a77979;
   position: fixed;
-  width: 100vw;
+  width: 100%;
+  z-index: 22;
+  color: #cfbfbf;
 }
 
 .section-content {
-  background-color: #472d2d;
   padding-top: 65px;
   min-height: 100vh;
+}
+
+footer {
+  padding-top: 50px;
+  padding-bottom: 30px;
+
+  color: white;
+  text-align: center;
+  width: 100%;
 }
